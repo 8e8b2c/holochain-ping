@@ -1,11 +1,19 @@
-[workspace]
-members = [
-  "dnas/*/zomes/coordinator/*",
-  "dnas/*/zomes/integrity/*",
-]
-
 [profile.dev]
 opt-level = "z"
 
 [profile.release]
 opt-level = "z"
+
+[workspace]
+members = ["dnas/*/zomes/coordinator/*", "dnas/*/zomes/integrity/*"]
+
+[workspace.dependencies]
+hdi = "=0.3.6"
+hdk = "=0.2.6"
+serde = "=1.0.166"
+
+[workspace.dependencies.ping]
+path = "dnas/ping/zomes/coordinator/ping"
+
+[workspace.dependencies.ping_integrity]
+path = "dnas/ping/zomes/integrity/ping"

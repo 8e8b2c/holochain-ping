@@ -1,0 +1,21 @@
+---
+manifest_version: "1"
+name: ping
+integrity:
+  network_seed: ~
+  properties: ~
+  origin_time: 1709657470267856
+  zomes:
+    - name: ping_integrity
+      hash: ~
+      bundled: "../../../target/wasm32-unknown-unknown/release/ping_integrity.wasm"
+      dependencies: ~
+      dylib: ~
+coordinator:
+  zomes:
+    - name: ping
+      hash: ~
+      bundled: "../../../target/wasm32-unknown-unknown/release/ping.wasm"
+      dependencies:
+        - name: ping_integrity
+      dylib: ~
