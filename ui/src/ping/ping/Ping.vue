@@ -51,18 +51,20 @@ export default defineComponent({
     methods: {
         async pingRecipient() {
             const agent = decodeHashFromBase64(this.recipient);
+            this.response = '';
 
             try {
-                this.response = await this.client.callZome({
+                const response = await this.client.callZome({
                     cap_secret: null,
                     role_name: 'ping',
                     zome_name: 'ping',
                     fn_name: 'ping_agent',
                     payload: agent,
                 });
+                this.response = `${response}  (${new Date().toISOString()})`
             } catch (e: any) {
                 const errorSnackbar = this.$refs['ping-error'] as Snackbar;
-                errorSnackbar.labelText = `Error creating the foo: ${e.data}`;
+                errorSnackbar.labelText = `Error executing ping_agent: ${e.data}`;
                 errorSnackbar.show();
             }
         },
